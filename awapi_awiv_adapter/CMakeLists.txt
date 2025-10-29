@@ -21,7 +21,6 @@ ament_auto_add_executable(awapi_awiv_adapter
 find_package(glog REQUIRED)
 target_link_libraries(awapi_awiv_adapter glog::glog)
 
-# Static relay nodes executable
 find_package(topic_tools REQUIRED)
 find_package(rclcpp_components REQUIRED)
 
