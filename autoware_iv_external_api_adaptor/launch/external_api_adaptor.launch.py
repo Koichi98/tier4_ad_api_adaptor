@@ -13,49 +13,17 @@
 # limitations under the License.
 
 import launch
-from launch_ros.actions import ComposableNodeContainer
-from launch_ros.descriptions import ComposableNode
-
-
-def _create_api_node(node_name, class_name, **kwargs):
-    return ComposableNode(
-        namespace="external",
-        name=node_name,
-        package="autoware_iv_external_api_adaptor",
-        plugin="external_api::" + class_name,
-        **kwargs
-    )
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
     # RTCController is launched by tier4_autoware_api_launch because it is used by autoware_universe.
-    components = [
-        _create_api_node("calibration_status", "CalibrationStatus"),
-        _create_api_node("cpu_usage", "CpuUsage"),
-        _create_api_node("diagnostics", "Diagnostics"),
-        _create_api_node("door", "Door"),
-        _create_api_node("emergency", "Emergency"),
-        _create_api_node("fail_safe_state", "FailSafeState"),
-        _create_api_node("initial_pose", "InitialPose"),
-        _create_api_node("localization_score", "LocalizationScore"),
-        _create_api_node("map", "Map"),
-        _create_api_node("operator", "Operator"),
-        _create_api_node("rosbag_logging_mode", "RosbagLoggingMode"),
-        _create_api_node("metadata_packages", "MetadataPackages"),
-        _create_api_node("route", "Route"),
-        _create_api_node("service", "Service"),
-        _create_api_node("start", "Start"),
-        _create_api_node("system_monitor", "SystemMonitor"),
-        _create_api_node("vehicle_status", "VehicleStatus"),
-        _create_api_node("velocity", "Velocity"),
-        _create_api_node("version", "Version"),
-    ]
-    container = ComposableNodeContainer(
-        namespace="external",
+    autoware_iv_adaptor_static_node = Node(
+        package="autoware_iv_external_api_adaptor",
+        executable="autoware_iv_adaptor_static",
         name="autoware_iv_adaptor",
-        package="rclcpp_components",
-        executable="component_container_mt",
-        composable_node_descriptions=components,
+        namespace="external",
         output="screen",
     )
-    return launch.LaunchDescription([container])
+
+    return launch.LaunchDescription([autoware_iv_adaptor_static_node])

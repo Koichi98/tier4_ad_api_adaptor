@@ -52,4 +52,21 @@ rclcpp_components_register_nodes(${PROJECT_NAME}
   "external_api::Version"
 )
 
+add_executable(autoware_iv_adaptor_static
+  src/autoware_iv_adaptor_static_main.cpp
+)
+
+ament_target_dependencies(autoware_iv_adaptor_static
+  rclcpp
+  rclcpp_components
+)
+
+target_link_libraries(autoware_iv_adaptor_static
+  ${PROJECT_NAME}
+)
+
+install(TARGETS autoware_iv_adaptor_static
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_auto_package(INSTALL_TO_SHARE launch)
