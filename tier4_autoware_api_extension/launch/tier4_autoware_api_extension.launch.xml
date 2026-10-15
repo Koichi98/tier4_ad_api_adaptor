@@ -76,7 +76,6 @@
       <param name="topic" value="/api/external/set/virtual_traffic_light/states"/>
       <param name="remap_topic" value="/perception/virtual_traffic_light_states"/>
       <param name="topic_type" value="tier4_v2x_msgs/msg/VirtualTrafficLightStateArray"/>
-      <param name="qos_depth" value="10"/>
       <param name="enable_relay_control" value="false"/>
       <param name="enable_keep_publishing" value="false"/>
     </autoware_node>
@@ -90,7 +89,6 @@
       <param name="topic" value="/planning/scenario_planning/status/infrastructure_commands"/>
       <param name="remap_topic" value="/api/external/get/virtual_traffic_light/commands"/>
       <param name="topic_type" value="tier4_v2x_msgs/msg/InfrastructureCommandArray"/>
-      <param name="qos_depth" value="10"/>
       <param name="enable_relay_control" value="false"/>
       <param name="enable_keep_publishing" value="false"/>
     </autoware_node>
